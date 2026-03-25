@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+@theme {
+  --color-neon: #c6ff00;
+  --color-border: #1e2632;
+  --color-card: #0e1218;
+  --color-panel: #151b24;
+  --color-sidebar: #080b10;
+  --color-text-muted: #9ba7ba;
+  --color-text-dim: #607188;
+  --color-auth: #0a0e11;
+}
+
+:root {
+  color: #e8edf5;
+  background: #06080c;
+  font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(65rem 32rem at 50% 14%, rgb(198 255 0 / 10%), transparent 60%),
+    radial-gradient(32rem 24rem at 12% 88%, rgb(198 255 0 / 9%), transparent 70%),
+    #05070b;
+}
+
+.bg-auth {
+  background:
+    radial-gradient(60rem 35rem at 50% 0%, rgb(198 255 0 / 14%), transparent 58%),
+    radial-gradient(30rem 40rem at 8% 88%, rgb(198 255 0 / 10%), transparent 70%),
+    #05070b;
+}
+
+.shadow-neon {
+  box-shadow: 0 0 28px rgb(198 255 0 / 32%);
+}

@@ -1,6 +1,10 @@
-import { NavLink } from 'react-router-dom'
-import { BarChart3, Bell, BookOpen, Bot, Box, Gauge, LayoutDashboard, Settings, ShoppingCart, UserCog, Users } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { BarChart3, Bell, BookOpen, Bot, Box, ChevronDown, ChevronUp, Gauge, LayoutDashboard, LogOut, Settings, ShoppingCart, UserCog, Users } from 'lucide-react'
 import { cn } from '../../utils/cn'
+import { useAuthStore } from '../../store/authStore'
+import { Modal } from '../ui/Modal'
+import { Button } from '../ui/Button'
 
 const navItems = [
   { label: 'Dashboard', to: '/dashboard', icon: LayoutDashboard },
@@ -16,6 +20,23 @@ const navItems = [
 ]
 
 export function Sidebar() {
+  const [isMenuOpen, setMenuOpen] = useState(false)
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
+  const profileRef = useRef<HTMLDivElement | null>(null)
+  const logout = useAuthStore((state) => state.logout)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const onDocumentClick = (event: MouseEvent) => {
+      if (!profileRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', onDocumentClick)
+    return () => document.removeEventListener('mousedown', onDocumentClick)
+  }, [])
+
   return (
     <aside className="hidden h-screen w-64 flex-col border-r border-border bg-sidebar p-4 lg:sticky lg:top-0 lg:flex">
       <div className="mb-8 flex items-center gap-3 px-2 pt-2">
@@ -46,10 +67,58 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="mt-auto rounded-2xl border border-border bg-panel p-3">
-        <p className="text-sm font-semibold text-white">Alex Rivera</p>
-        <p className="text-xs text-text-dim">System Admin</p>
+      <div className="relative mt-auto" ref={profileRef}>
+        {isMenuOpen ? (
+          <div className="absolute bottom-[calc(100%+8px)] left-0 right-0 overflow-hidden rounded-[18px] border border-border bg-[#101722] shadow-2xl shadow-black/50">
+            <button
+              className="flex h-8 w-full items-center gap-2 px-3 text-[11px] font-semibold text-red-300 transition hover:bg-red-500/10"
+              onClick={() => {
+                setMenuOpen(false)
+                setShowLogoutConfirm(true)
+              }}
+            >
+              <LogOut className="h-3 w-3" />
+              Logout
+            </button>
+          </div>
+        ) : null}
+
+        <button
+          className="flex w-full items-center gap-2 rounded-[20px] border border-border bg-[#0c1017] px-3 py-2 transition hover:border-slate-500"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          <div className="grid h-8 w-8 place-items-center rounded-full bg-[#f0bf97] text-white">
+            <Users className="h-4 w-4" />
+          </div>
+          <div className="flex-1 text-left">
+            <p className="text-[14px] font-semibold leading-tight text-white">Alex Rivera</p>
+            <p className="mt-0.5 text-[11px] leading-tight text-[#7d8da7]">System Admin</p>
+          </div>
+          <div className="flex flex-col text-[#7d8da7]">
+            <ChevronUp className="h-2.5 w-2.5" />
+            <ChevronDown className="h-2.5 w-2.5" />
+          </div>
+        </button>
       </div>
+
+      <Modal isOpen={showLogoutConfirm} onClose={() => setShowLogoutConfirm(false)} title="Logout?" className="max-w-md">
+        <p className="text-sm text-text-muted">Are you sure you want to log out from the admin dashboard?</p>
+        <div className="mt-6 flex justify-end gap-3">
+          <Button variant="ghost" onClick={() => setShowLogoutConfirm(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              logout()
+              setShowLogoutConfirm(false)
+              navigate('/login', { replace: true })
+            }}
+          >
+            Confirm Logout
+          </Button>
+        </div>
+      </Modal>
     </aside>
   )
 }

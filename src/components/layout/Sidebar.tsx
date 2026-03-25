@@ -17,7 +17,7 @@ const navItems = [
 
 export function Sidebar() {
   return (
-    <aside className="hidden h-screen w-64 flex-col border-r border-border bg-sidebar p-4 lg:flex">
+    <aside className="hidden h-screen w-64 flex-col border-r border-border bg-sidebar p-4 lg:sticky lg:top-0 lg:flex">
       <div className="mb-8 flex items-center gap-3 px-2 pt-2">
         <div className="grid h-8 w-8 place-items-center rounded-full bg-neon text-black">
           <UserCog className="h-4 w-4" />

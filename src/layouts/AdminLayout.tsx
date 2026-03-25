@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Sidebar } from '../components/layout/Sidebar'
 import { Topbar } from '../components/layout/Topbar'
 import { Button } from '../components/ui/Button'
+import { cn } from '../utils/cn'
 
 const titles: Record<string, { title: string; subtitle: string; actionLabel?: string }> = {
   '/dashboard': { title: 'Dashboard Overview', subtitle: 'Platform performance summary', actionLabel: 'Last 30 days' },
@@ -16,17 +17,18 @@ const titles: Record<string, { title: string; subtitle: string; actionLabel?: st
 export function AdminLayout() {
   const { pathname } = useLocation()
   const meta = titles[pathname] ?? { title: 'AForce Admin', subtitle: '' }
+  const dashboardScrollMode = pathname === '/dashboard'
 
   return (
     <div className="min-h-screen bg-black text-white lg:flex">
       <Sidebar />
-      <div className="flex min-h-screen flex-1 flex-col">
+      <div className={cn('flex min-h-screen flex-1 flex-col', dashboardScrollMode && 'h-screen overflow-hidden')}>
         <Topbar
           title={meta.title}
           subtitle={meta.subtitle}
           action={meta.actionLabel ? <Button className="px-5">{meta.actionLabel}</Button> : undefined}
         />
-        <main className="flex-1 p-6">
+        <main className={cn('flex-1 p-6', dashboardScrollMode && 'overflow-y-auto')}>
           <Outlet />
         </main>
       </div>

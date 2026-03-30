@@ -14,6 +14,11 @@ import { AnalyticsPage } from './pages/analytics/AnalyticsPage'
 import { ContentPage } from './pages/content/ContentPage'
 import { AICoachingPage } from './pages/ai-coaching/AICoachingPage'
 import { AuthenticatingPage } from './pages/auth/AuthenticatingPage'
+import { NotificationsPage } from './pages/notifications/NotificationsPage'
+import { SubscriptionsPage } from './pages/subscriptions/SubscriptionsPage'
+import { SettingsPage } from './pages/settings/SettingsPage'
+import { CmsPage } from './pages/cms/CmsPage'
+import { ProfilePage } from './pages/profile/ProfilePage'
 
 function NotFoundPage() {
   return <div className="grid min-h-screen place-items-center bg-black text-white">Page not found.</div>
@@ -30,6 +35,9 @@ export default function App() {
         <Route path="/2fa" element={<TwoFactorPage />} />
         <Route path="/authenticating" element={<AuthenticatingPage />} />
         <Route path="/session-expired" element={<SessionExpiredPage />} />
+        <Route path="/about-us" element={<CmsPage pageId="about-us" />} />
+        <Route path="/privacy-policy" element={<CmsPage pageId="privacy-policy" />} />
+        <Route path="/terms-and-conditions" element={<CmsPage pageId="terms-and-conditions" />} />
 
         <Route element={<ProtectedRoute />}>
           <Route element={<AdminLayout />}>
@@ -40,6 +48,10 @@ export default function App() {
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/content" element={<ContentPage />} />
             <Route path="/ai-coaching" element={<AICoachingPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/subscriptions" element={<SubscriptionsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Route>
 

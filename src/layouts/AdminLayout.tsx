@@ -12,6 +12,10 @@ const titles: Record<string, { title: string; subtitle: string; actionLabel?: st
   '/analytics': { title: 'Analytics Dashboard', subtitle: 'Monitor hydration engagement and sales', actionLabel: 'Last 7 Days' },
   '/content': { title: 'Content Management', subtitle: 'Manage videos, articles and tips', actionLabel: '+ Add Content' },
   '/ai-coaching': { title: 'AI Coaching Content', subtitle: 'Upload educational content', actionLabel: '+ Add New Video' },
+  '/notifications': { title: 'Notification Center', subtitle: 'Track alerts, announcements and delivery health', actionLabel: 'Send Broadcast' },
+  '/subscriptions': { title: 'Subscription Management', subtitle: 'Monitor plans, renewals and MRR performance', actionLabel: 'Export Billing' },
+  '/settings': { title: 'Settings & CMS', subtitle: 'Manage legal pages and dashboard configuration', actionLabel: 'Publish Changes' },
+  '/profile': { title: 'Profile Settings', subtitle: 'Update your administrator account details and image', actionLabel: 'Account Security' },
 }
 
 export function AdminLayout() {

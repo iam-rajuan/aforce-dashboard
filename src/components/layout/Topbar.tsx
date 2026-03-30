@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { Bell, CircleHelp, Search } from 'lucide-react'
+import { useAuthStore } from '../../store/authStore'
 
 interface TopbarProps {
   title: string
@@ -8,6 +9,9 @@ interface TopbarProps {
 }
 
 export function Topbar({ title, subtitle, action }: TopbarProps) {
+  const userName = useAuthStore((state) => state.userName)
+  const userRole = useAuthStore((state) => state.userRole)
+
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-black/85 px-6 py-4 backdrop-blur">
       <div className="mb-4 flex items-center justify-between gap-4">
@@ -26,8 +30,8 @@ export function Topbar({ title, subtitle, action }: TopbarProps) {
           <button className="rounded-full border border-border bg-panel p-2 text-text-muted hover:text-white"><Bell className="h-4 w-4" /></button>
           <button className="rounded-full border border-border bg-panel p-2 text-text-muted hover:text-white"><CircleHelp className="h-4 w-4" /></button>
           <div className="hidden text-right sm:block">
-            <p className="text-sm font-semibold text-white">Alex Rivera</p>
-            <p className="text-xs text-neon">SUPER ADMIN</p>
+            <p className="text-sm font-semibold text-white">{userName}</p>
+            <p className="text-xs text-neon">{userRole.toUpperCase()}</p>
           </div>
         </div>
       </div>

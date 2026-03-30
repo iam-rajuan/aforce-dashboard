@@ -42,3 +42,51 @@ body {
 .shadow-neon {
   box-shadow: 0 0 28px rgb(198 255 0 / 32%);
 }
+
+.cms-content {
+  color: #dce5f0;
+  line-height: 1.75;
+}
+
+.cms-content h1,
+.cms-content h2,
+.cms-content h3 {
+  color: white;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cms-content h1 {
+  font-size: 2rem;
+}
+
+.cms-content h2 {
+  font-size: 1.5rem;
+}
+
+.cms-content h3 {
+  font-size: 1.25rem;
+}
+
+.cms-content p,
+.cms-content ul,
+.cms-content ol,
+.cms-content blockquote {
+  margin: 0 0 1rem;
+}
+
+.cms-content ul,
+.cms-content ol {
+  padding-left: 1.5rem;
+}
+
+.cms-content blockquote {
+  border-left: 3px solid rgb(198 255 0 / 40%);
+  padding-left: 1rem;
+  color: #b9c4d5;
+}
+
+.cms-editor[contenteditable="true"]:empty::before {
+  content: attr(data-placeholder);
+  color: #607188;
+}

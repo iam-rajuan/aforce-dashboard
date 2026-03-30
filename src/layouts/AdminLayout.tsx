@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button'
 import { cn } from '../utils/cn'
 
 const titles: Record<string, { title: string; subtitle: string; actionLabel?: string }> = {
-  '/dashboard': { title: 'Dashboard Overview', subtitle: 'Platform performance summary', actionLabel: 'Last 30 days' },
+  '/dashboard': { title: 'Dashboard Overview', subtitle: 'Platform performance summary' },
   '/users': { title: 'User Management', subtitle: 'Manage and monitor user accounts', actionLabel: '+ Add User' },
   '/products': { title: 'Product Management', subtitle: 'Admin workspace', actionLabel: '+ Add Product' },
   '/orders': { title: 'Order Management', subtitle: 'Track fulfillment and refunds', actionLabel: 'Export Orders' },

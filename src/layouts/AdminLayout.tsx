@@ -31,6 +31,11 @@ export function AdminLayout() {
           onClick={() => {
             if (pathname === '/users') {
               navigate('/users?modal=add')
+              return
+            }
+
+            if (pathname === '/products') {
+              navigate('/products?modal=add')
             }
           }}
         >

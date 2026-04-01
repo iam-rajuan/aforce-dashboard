@@ -21,6 +21,8 @@ export interface Product {
   stock: number
   status: 'Active' | 'Inactive'
   image?: string
+  description?: string
+  benefits?: string[]
 }
 
 export interface Order {
@@ -30,6 +32,23 @@ export interface Order {
   amount: number
   status: 'Processing' | 'Shipped' | 'Pending' | 'Delivered' | 'Cancelled'
   date: string
+  placedAt?: string
+  customerSince?: string
+  ordersTotal?: number
+  paymentMethod?: string
+  paymentAuthorizedAt?: string
+  shippingAddress?: string[]
+  customerAvatar?: string
+  items?: OrderItem[]
+  shippingAmount?: number
+}
+
+export interface OrderItem {
+  id: string
+  name: string
+  qty: number
+  price: number
+  image?: string
 }
 
 export interface ContentItem {
